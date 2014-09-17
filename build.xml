@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="keypan" default="compile" basedir=".">
+
+  <property name="java.source" value="1.5"/>
+  <property name="java.target" value="1.5"/>
+  <property name="lib.dir" value="${basedir}/lib"/>
+  <property name="bin.dir" value="${basedir}/bin"/>
+
+  <property name="classes.dir" value="classes"/>
+  <property name="src.dir" value="src"/>
+  <property name="core-reports.dir" value="${src.dir}/core-test/reports"/>
+
+  <path id="core.libs">
+    <pathelement path="${lib.dir}/bcprov-jdk15on-150.jar"/>
+    <pathelement path="${lib.dir}/bcpg-jdk15on-150.jar"/>
+    <pathelement path="${lib.dir}/jsoup-1.7.3.jar"/>
+    <pathelement path="${lib.dir}/android-json.jar"/>
+  </path>
+
+  <path id="web.libs">
+    <pathelement path="${lib.dir}/winstone-0.9.10.jar"/>
+    <pathelement path="${lib.dir}/tdom.jar"/>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${classes.dir}/core"/>
+    <mkdir dir="${classes.dir}/core-test"/>
+    <mkdir dir="${classes.dir}/cli"/>
+    <mkdir dir="${classes.dir}/web"/>
+    <mkdir dir="${core-reports.dir}"/>
+    <mkdir dir="${bin.dir}"/>
+  </target>
+
+  <target name="compile"
+          depends="core-compile,cli-compile,web-compile"/>
+
+  <target name="core-compile" depends="init">
+    <javac source="${java.source}"
+           target="${java.target}"
+           debug="true"
+           srcdir="${src.dir}/core"
+           includeantruntime="false"
+           destdir="${classes.dir}/core">
+      <compilerarg value="-Xlint:all"/>
+      <classpath>
+        <path refid="core.libs"/>
+      </classpath>
+    </javac>
+    <copy
+        file="${src.dir}/core/com/kbsriram/keypan/core/trusted_roots"
+        tofile="${classes.dir}/core/com/kbsriram/keypan/core/trusted_roots"/>
+  </target>
+
+  <target name="cli-compile"
+          depends="core-compile">
+    <javac source="${java.source}"
+           target="${java.target}"
+           debug="true"
+           srcdir="${src.dir}/cli"
+           includeantruntime="false"
+           destdir="${classes.dir}/cli">
+      <compilerarg value="-Xlint:all"/>
+      <classpath>
+        <pathelement location="${classes.dir}/core"/>
+        <path refid="core.libs"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="web-compile"
+          depends="core-compile">
+    <javac source="${java.source}"
+           target="${java.target}"
+           debug="true"
+           srcdir="${src.dir}/web"
+           includeantruntime="false"
+           destdir="${classes.dir}/web">
+      <compilerarg value="-Xlint:all"/>
+      <classpath>
+        <pathelement location="${classes.dir}/core"/>
+        <path refid="core.libs"/>
+        <path refid="web.libs"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="war" depends="web-compile">
+    <war destfile="${bin.dir}/embedded.war"
+         webxml="${src.dir}/web/metadata/web.xml">
+      <fileset dir="${src.dir}/web/html"/>
+      <lib dir="${lib.dir}">
+        <include name="jsoup-1.7.3.jar"/>
+        <include name="android-json.jar"/>
+        <include name="tdom.jar"/>
+        <include name="bcprov-jdk15on-150.jar"/>
+        <include name="bcpg-jdk15on-150.jar"/>
+      </lib>
+      <classes dir="${classes.dir}/core"/>
+      <classes dir="${classes.dir}/web"/>
+    </war>
+  </target>
+
+  <target name="webserver" depends="war">
+    <zip destfile="${bin.dir}/keypan-web.jar"
+         update="true">
+      <zipfileset src="${lib.dir}/winstone-0.9.10.jar"/>
+      <fileset file="${bin.dir}/embedded.war"/>
+      <fileset file="${src.dir}/web/metadata/embedded.properties"/>
+    </zip>
+  </target>
+
+  <target name="jar"
+          depends="cli-jar"/>
+
+  <target name="cli-jar"
+          depends="cli-compile">
+    <jar destfile="${bin.dir}/keypan-cli.jar">
+      <fileset dir="${classes.dir}/core"/>
+      <fileset dir="${classes.dir}/cli"/>
+      <zipfileset
+          includes="**/*.class"
+          src="${lib.dir}/bcprov-jdk15on-150.jar"/>
+      <zipfileset
+          includes="**/*.class"
+          src="${lib.dir}/bcpg-jdk15on-150.jar"/>
+      <zipfileset
+          src="${lib.dir}/jsoup-1.7.3.jar"/>
+      <zipfileset
+          src="${lib.dir}/android-json.jar"/>
+      <manifest>
+        <attribute name="Main-Class"
+                   value="com.kbsriram.keypan.cli.CMain"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="core-test-compile" depends="core-compile">
+    <javac source="${java.source}"
+           target="${java.target}"
+           debug="true"
+           srcdir="${src.dir}/core-test"
+           includeantruntime="false"
+           destdir="${classes.dir}/core-test">
+      <compilerarg value="-Xlint:all"/>
+      <classpath>
+        <path refid="core.libs"/>
+        <pathelement location="${classes.dir}/core"/>
+        <pathelement location="${lib.dir}/junit-4.10.jar"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="core-test" depends="core-test-compile">
+    <junit printsummary="yes" haltonfailure="yes">
+      <classpath>
+        <path refid="core.libs"/>
+        <pathelement location="${classes.dir}/core"/>
+        <pathelement location="${classes.dir}/core-test"/>
+        <pathelement location="${lib.dir}/junit-4.10.jar"/>
+      </classpath>
+      <formatter type="plain"/>
+      <batchtest todir="${core-reports.dir}">
+        <fileset dir="${src.dir}/core-test">
+          <include name="**/C*Test.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+
+  </target>
+
+  <target name="clean">
+    <delete dir="${classes.dir}"/>
+    <delete dir="${core-reports.dir}"/>
+    <delete dir="${bin.dir}"/>
+  </target>
+
+</project>
