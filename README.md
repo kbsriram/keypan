@@ -88,15 +88,15 @@ gpg&gt; <b>save</b>
 $
 </pre>
 2. Repeat this for each profile URL you want to associate with your
-key. Finally, publish it to the keyservers.
-```
-$ gpg --send-keys <yourkeyid>
+key. Then, publish it to the keyservers.
+<pre>
+$ gpg --send-keys &lt;yourkeyid&gt;
 gpg: sending key 12F3C45F to hkps server hkps.pool.sks-keyservers.net
 $
-```
-3. For each profile URL, publish your key fingerprint to your information.
+</pre>
+3. Finally, publish your key fingerprint on each of your profiles.
 
-## Publishing your key fingerprint
+## Publishing a fingerprint on your profile
 
 The `keypan` tool can search for fingerprints from three types of
 profiles, Github, Twitter and Google+. To publish your fingerprint on
@@ -105,4 +105,4 @@ each of these sites, do the following.
 1. Github - publish a public gist containing your fingerprint. An
    example can be found here - https://gist.github.com/kbsriram/c05dca103a252ac0d6ac
 2. Twitter - go to your [profile settings](https://twitter.com/settings/profile) and add your fingerprint to your bio. An example can be found here - https://twitter.com/kbsriram
-3. Google+ - go to your profile about page and edit your basic information to include your fingerprint. An example can be found here - https://plus.google.com/+KBSriram/about - and [this page](https://support.google.com/plus/answer/1355890) has more information on how to edit your profile page.
+3. Google+ - go to your profile about page and [edit your basic information](https://support.google.com/plus/answer/1355890) to include your fingerprint. An example can be found here - https://plus.google.com/+KBSriram/about
