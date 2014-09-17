@@ -67,7 +67,13 @@ $ java -jar keypan-web.jar
 
 and then visit http://localhost:8014
 
-## Adding a profile to your key
+## Making your keys visible to `keypan`
+
+To allow people to lookup your keys with `keypan`, you will add your
+various profile URLs to your key, and then publish your key
+fingerprint on your profiles.
+
+###Adding a profile to your key
 
 Here's how to use `gpg` to add your social media profiles to your key.
 
@@ -94,9 +100,8 @@ $ gpg --send-keys &lt;yourkeyid&gt;
 gpg: sending key 12F3C45F to hkps server hkps.pool.sks-keyservers.net
 $
 </pre>
-3. Finally, publish your key fingerprint on each of your profiles.
 
-## Publishing your fingerprint on a profile
+### Publishing your fingerprint on a profile
 
 The `keypan` tool can search for fingerprints from three types of
 profiles, Github, Twitter and Google+. To publish your fingerprint on
