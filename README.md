@@ -21,7 +21,7 @@ Save this key? (y/N)
 There's also a locally runnable web-server, which offers a
 nicer-looking interface to the search.
 
-![keypan search](/kbsriram/keypan/raw/master/etc/keypan-web.png "Keypan Search")
+![keypan search](https://github.com/kbsriram/keypan/raw/master/etc/keypan-web.png "Keypan Search")
 
 ##How it works
 
@@ -50,7 +50,7 @@ propagate your keys.
 The clients are written in Java and need at least Java 1.6.
 
 To run the command-line client, download
-[keypan-cli.jar](/kbsriram/keypan/raw/master/bin/keypan-cli.jar)
+[keypan-cli.jar](https://github.com/kbsriram/keypan/raw/master/bin/keypan-cli.jar)
 and simply run it with a suitable query.
 
 ```
@@ -58,7 +58,7 @@ $ java -jar keypan-cli.jar github.com/kbsriram
 ```
 
 To run the local webserver, download
-[keypan-web.jar](/kbsriram/keypan/raw/master/bin/keypan-web.jar)
+[keypan-web.jar](https://github.com/kbsriram/keypan/raw/master/bin/keypan-web.jar)
 and run it as
 
 ```
