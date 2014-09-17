@@ -69,9 +69,9 @@ and then visit http://localhost:8014
 
 ## Making your keys visible to `keypan`
 
-To allow people to lookup your keys with `keypan`, you will add your
-various profile URLs to your key, and then publish your key
-fingerprint on your profiles.
+To allow people to lookup your keys with `keypan`, add your various
+profile URLs to your key, and publish your key fingerprint on each of
+your profiles.
 
 ###Adding a profile to your key
 
