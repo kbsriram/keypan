@@ -194,7 +194,7 @@ public class CHkpSearch
         private final List<String> m_uids = new ArrayList<String>();
     }
     private final static String DEFAULT_HKP =
-        "http://hkps.pool.sks-keyservers.net/pks/lookup";
+        "https://pgp.mit.edu/pks/lookup";
     // unfortunately, unable to consistently obtain a ciphersuite in
     // java-land that's able to handle all the servers in the ssl
     // pool.

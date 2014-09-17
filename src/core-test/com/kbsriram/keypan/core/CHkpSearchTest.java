@@ -23,8 +23,10 @@ public class CHkpSearchTest
 
         assertEquals(1, results.size());
         CHkpSearch.Info info = results.get(0);
-        assertEquals
-            ("bf71a5e8e8cd553bde86096962f463c673f6c01f", info.getKeyId());
+        assertTrue(info.getKeyId().length() >= 8);
+        assertTrue
+            ("bf71a5e8e8cd553bde86096962f463c673f6c01f"
+             .endsWith(info.getKeyId()));
         checkPkrc(info.getKeyId(), getter);
     }
 
@@ -37,6 +39,8 @@ public class CHkpSearchTest
         assertEquals(1, pkrc.size());
         Iterator<PGPPublicKeyRing> it = pkrc.getKeyRings();
         PGPPublicKeyRing pkr = it.next();
-        assertEquals(kid, CUtils.byte2hex(pkr.getPublicKey().getFingerprint()));
+        assertTrue
+            (CUtils.byte2hex(pkr.getPublicKey().getFingerprint())
+             .endsWith(kid));
     }
 }

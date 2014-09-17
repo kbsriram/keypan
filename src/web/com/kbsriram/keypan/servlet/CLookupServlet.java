@@ -107,12 +107,9 @@ public final class CLookupServlet extends HttpServlet
                t(formatFingerprint(pk.getFingerprint()))));
 
         proot.append
-            (n("textarea",
-               a("class", "profile_pubkey"),
-               a("cols", "65"),
-               a("rows", "8"),
-               a("readonly", "readonly"),
-               t(formatKey(pkr.getOriginal()))));
+            (n("div", a("class", "key_save"),
+               n("a", a("href", CKeySaveServlet.save(pkr.getOriginal())),
+                 t("Save this key"))));
         return proot;
     }
 
@@ -155,25 +152,11 @@ public final class CLookupServlet extends HttpServlet
         return sb.toString();
     }
 
-    private final static String formatKey(PGPPublicKeyRing pkr)
-    {
-        try {
-            ByteArrayOutputStream baout = new ByteArrayOutputStream();
-            ArmoredOutputStream out = new ArmoredOutputStream(baout);
-            pkr.encode(out);
-            out.close();
-            return new String(baout.toByteArray(), "utf-8");
-        }
-        catch (Exception unexpected) {
-            throw new RuntimeException(unexpected);
-        }
-    }
-
-    private final static void error(HttpServletResponse resp, String msg)
+    final static void error(HttpServletResponse resp, String msg)
         throws IOException
     { write(resp, n("div", a("class", "error"), t(msg)), "Error", null); }
 
-    private final static void write
+    final static void write
         (HttpServletResponse resp,
          TNode content, String title, String q)
         throws IOException

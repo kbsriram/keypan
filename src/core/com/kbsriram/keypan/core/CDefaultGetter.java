@@ -62,6 +62,7 @@ public class CDefaultGetter
             final CPinnedTrustManager ptm = new CPinnedTrustManager
                 (new String[] {
                     "e16db1168a72d13d7a073a3647387bee290060d9", // sks
+                    "d5b5108852805a9334d0bb5f44448ffa5defd811", // pgp.mit.edu
                     "43dad630ee53f8a980ca6efd85f46aa37990e0ea", // google
                     "dc9f1c64879d88ca7d0cce64d18d232d1095aa1c", // github
                     "1579f0bcedf49dba5c2608c32ba6c7fab192a84a", // twitter

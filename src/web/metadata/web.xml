@@ -7,8 +7,16 @@
     <servlet-name>lookup</servlet-name>
     <servlet-class>com.kbsriram.keypan.servlet.CLookupServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>save</servlet-name>
+    <servlet-class>com.kbsriram.keypan.servlet.CKeySaveServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>lookup</servlet-name>
     <url-pattern>/lookup</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>save</servlet-name>
+    <url-pattern>/save</url-pattern>
   </servlet-mapping>
 </web-app>

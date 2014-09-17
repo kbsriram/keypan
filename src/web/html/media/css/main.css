@@ -299,19 +299,17 @@ div.profile_key_fp {
     font-family: monospace;
 }
 
-textarea.profile_pubkey {
-    border: 1px solid #cfcfcf;
-    margin-top: 3em;
-    font-size: 0.5em;
-    padding-left: 0.5em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    border-radius: 3px;
-    outline: none;
-    margin-bottom: 0.5em;
-    margin-right: 0.5em;
-    color: #909090;
-    display: block;
+div.key_save {
+    font-size: 0.8em;
+    margin-top: 1em;
+}
+
+div.key_save a {
+    text-decoration: none;
+    color: #36c;
+}
+div.key_save a:hover {
+    text-decoration: underline;
 }
 
 @media screen and (min-width: 530px) {
