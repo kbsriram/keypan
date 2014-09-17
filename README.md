@@ -21,7 +21,7 @@ Save this key? (y/N)
 There's also a locally runnable web-server, which offers a
 nicer-looking interface to the search.
 
-![keypan search](/kbsriram/keypan/blob/master/etc/keypan-web.png "Keypan Search")
+![keypan search](/kbsriram/keypan/raw/master/etc/keypan-web.png "Keypan Search")
 
 ##How it works
 
@@ -50,7 +50,7 @@ propagate your keys.
 The clients are written in Java and need at least Java 1.6.
 
 To run the command-line client, download
-[keypan-cli.jar](/kbsriram/keypan/blob/master/bin/keypan-cli.jar)
+[keypan-cli.jar](/kbsriram/keypan/raw/master/bin/keypan-cli.jar)
 and simply run it with a suitable query.
 
 ```
@@ -58,7 +58,7 @@ $ java -jar keypan-cli.jar github.com/kbsriram
 ```
 
 To run the local webserver, download
-[keypan-web.jar](/kbsriram/keypan/blob/master/bin/keypan-web.jar)
+[keypan-web.jar](/kbsriram/keypan/raw/master/bin/keypan-web.jar)
 and run it as
 
 ```
@@ -69,10 +69,9 @@ and then visit http://localhost:8014
 
 ## Publishing your key with `gpg`
 
-If you'd like to associate your existing keys with your various social
-media profiles, here's how you can do it with `gpg`.
+Here's how to use `gpg` to add your various social media profiles to your key.
 
-1. First add the url to your profile as a new uid. For example,
+1. First add each profile url as a new uid. For example,
 <pre>
 $ gpg --allow-freeform-uid --edit-key john@example.com adduid
 [...]
@@ -81,7 +80,6 @@ Email address: <b>&lt;CR&gt;</b>
 Comment: <b>&lt;CR&gt;</b>
 You selected this USER-ID:
     "https://github.com/myrealname"
-
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? <b>o</b>
 [...]
 Enter passphrase: <b>&lt;password&gt;</b>
