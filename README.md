@@ -1,9 +1,9 @@
 #Keypan#
 
 This is a simple tool to find OpenPGP keys associated with a public
-profile on Twitter, Github or Google Plus. It does one of the things a
-site like [keybase.io](https://keybase.io) offers, but without
-depending on a separate service.
+profile on Twitter, Github or Google Plus. It achieves one of the
+things a site like [keybase.io](https://keybase.io) offers, but
+without requiring a separate service.
 
 ```
 $ java -jar keypan-cli.jar github.com/kbsriram
@@ -45,9 +45,9 @@ As a secondary benefit, it consolidates your various public profiles
 directly on your key, and uses the distributed OpenPGP key-servers to
 propagate your keys.
 
-## Running the clients
+## Running `keypan`
 
-The clients are written in Java and need at least Java 1.6.
+The `keypan` client is written in Java and needs at least Java 1.6.
 
 To run the command-line client, download
 [keypan-cli.jar](https://github.com/kbsriram/keypan/raw/master/bin/keypan-cli.jar)
@@ -67,9 +67,9 @@ $ java -jar keypan-web.jar
 
 and then visit http://localhost:8014
 
-## Publishing your key with `gpg`
+## Adding a profile to your key
 
-Here's how to use `gpg` to add your various social media profiles to your key.
+Here's how to use `gpg` to add your social media profiles to your key.
 
 1. First add each profile url as a new uid. For example,
 <pre>
@@ -96,7 +96,7 @@ $
 </pre>
 3. Finally, publish your key fingerprint on each of your profiles.
 
-## Publishing a fingerprint on your profile
+## Publishing your fingerprint on a profile
 
 The `keypan` tool can search for fingerprints from three types of
 profiles, Github, Twitter and Google+. To publish your fingerprint on
